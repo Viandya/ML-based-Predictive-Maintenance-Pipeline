@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  training:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: predictive-maintenance:latest
+    command: python scripts/train_pipeline.py
+    volumes:
+      - ../data:/app/data
+      - ../models:/app/models
+      - ../experiments:/app/experiments
+    environment:
+      - LOG_LEVEL=INFO
+
+  inference:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: predictive-maintenance:latest
+    command: python scripts/inference_demo.py
+    volumes:
+      - ../models:/app/models
+    depends_on:
+      training:
+        condition: service_completed_successfully
+
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: predictive-maintenance:latest
+    command: uvicorn src.deployment.api:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../models:/app/models

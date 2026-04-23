@@ -1,0 +1,23 @@
+lgbm:
+  objective: "multiclass"
+  num_class: 6
+  metric: "multi_logloss"
+  boosting_type: "gbdt"
+  num_leaves: 127
+  max_depth: -1
+  learning_rate: 0.05
+  n_estimators: 2000
+  subsample: 0.8
+  colsample_bytree: 0.8
+  reg_alpha: 0.1
+  reg_lambda: 0.1
+  min_child_samples: 50
+  class_weight: "balanced"
+  random_state: 42
+  early_stopping_rounds: 100
+  verbose: -1
+
+cost_matrix:
+  false_positive_cost: 500
+  false_negative_cost: 10000
+  true_positive_gain: 8000

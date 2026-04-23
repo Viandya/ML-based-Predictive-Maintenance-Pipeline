@@ -1,0 +1,22 @@
+statistical:
+  functions:
+    - mean
+    - std
+    - min
+    - max
+    - kurtosis
+    - skew
+    - q25
+    - q75
+
+spectral:
+  fft_components: 10
+  psd_enabled: true
+  wavelet_enabled: false
+
+timesnet:
+  enabled: true
+  pretrained_model: "timesnet_pretrained.pth"
+  embedding_dim: 512
+  freeze_backbone: true
+  input_window_size: 96
