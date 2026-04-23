@@ -1,4 +1,3 @@
-```markdown
 # Predictive Maintenance System for CNC Machines
 
 ML-based system for early detection of equipment failures using sensor telemetry. Predicts failures 8+ hours in advance, reducing unplanned downtime costs.
